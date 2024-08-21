@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: correct-postgres
+  template:
+    metadata:
+      labels:
+        app: correct-postgres
+    spec:
+      containers:
+        - name: correct-postgres
+          image: postgres:13.4
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: admin
+            - name: POSTGRES_DB
+              value: correct-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-srv
+spec:
+  selector:
+    app: correct-postgres
+  ports:
+    - name: postgres-srv
+      protocol: TCP
+      port: 5432
+      targetPort: 5432

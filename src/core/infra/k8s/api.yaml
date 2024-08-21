@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: correct-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: correct
+  template:
+    metadata:
+      labels:
+        app: correct
+    spec:
+      containers:
+        - name: correct
+          image: jserenarruda/syscorrect:v2
+          ports:
+            - containerPort: 3333
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://postgres:admin@127.0.0.1:5435/correct-db?schema=public"
+            - name: SECRET_KEY_TOKEN_ADMIN
+              value: correct_admin_token
+            - name: SECRET_KEY_TOKEN_COMPANY_ADMIN
+              value: company_admin_token
+            - name: SECRET_KEY_TOKEN_APP_USER
+              value: app_user_token
+            - name: SECRET_KEY_TOKEN_COMPANY_SECONDARY_USER
+              value: company_user_token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: correct-srv
+spec:
+  selector:
+    app: correct
+  ports:
+    - protocol: TCP
+      port: 3333
+      targetPort: 3333
+  type: NodePort
+# ---
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: prisma-migrate-job
+# spec:
+#   template:
+#     spec:
+#       containers:
+#       - name: prisma-migrate
+#         image: jserenarruda/syscorrect:v2
+#         command: [ "/bin/sh", "-c", "until nc -z -w 1 postgres-srv 5432; do sleep 1; done && npx prisma migrate dev" ]
+#       restartPolicy: Never
+#   backoffLimit: 4
+

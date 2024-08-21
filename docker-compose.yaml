@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    command: ./.docker/start.sh
+    ports:
+      - 3335:3335
+    volumes:
+      - .:/home/node/app
+    networks:
+      - api-correct_correct_net
+
+networks:
+  api-correct_correct_net:
+    external: true

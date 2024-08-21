@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package correct_admin;
+
+service CorrectAdminService {
+  rpc FindCorrectAdmin (InputFindAdmin) returns (OutputFindAdmin);
+}
+
+message InputFindAdmin {
+  string uuid = 1;
+}
+
+message OutputFindAdmin {
+  string uuid = 1;
+  string name = 2;
+
+}

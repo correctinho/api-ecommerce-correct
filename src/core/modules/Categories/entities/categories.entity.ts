@@ -1,5 +1,5 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { Uuid } from '../../../@shared/ValueObjects/uuid.vo';
-import { CustomError } from '../../../errors/custom.error';
 import { newDateF } from '../../../util/date';
 
 export type CategoryProps = {
@@ -36,7 +36,8 @@ export class CategoryEntity {
   }
 
   validate() {
-    if (!this.name) throw new CustomError('Name is required', 400);
+    if (!this.name)
+      throw new HttpException('Name is required', HttpStatus.BAD_REQUEST);
   }
 
   get uuid(): Uuid {

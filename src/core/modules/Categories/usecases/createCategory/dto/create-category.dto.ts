@@ -5,6 +5,7 @@ export type InputCreateCategoryDTO = {
   uuid: Uuid
   name: string
   description: string | null
+  correct_admin_uuid: string
 }
 
 export type OutputCreateCategoryDTO = {

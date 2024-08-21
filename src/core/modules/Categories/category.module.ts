@@ -5,10 +5,13 @@ import { CreateCategoryUsecase } from './usecases/createCategory/create-category
 import { PrismaService } from 'src/core/infra/databases/prisma.config';
 import { CategoriesPrismaRepository } from './repositories/implementations/prisma/category.prisma.repository';
 import { ICategoriesRepository } from './repositories/categories.repository';
+import { CorrectAdminDetailsModule } from '../CorrectAdmin/correct-admin-details.module';
+import { FindCategoryUsecase } from './usecases/findCategory/find-category.usecase';
+import { FindAllCategoryUsecase } from './usecases/findAllCategories/find-category.usecase';
 @Module({
-  imports: [],
+  imports: [CorrectAdminDetailsModule],
   controllers: [CategoryController],
-  providers: [CreateCategoryUsecase, PrismaService,
+  providers: [CreateCategoryUsecase, FindCategoryUsecase, FindAllCategoryUsecase, PrismaService,
     {
       provide: ICategoriesRepository,
       useClass: CategoriesPrismaRepository

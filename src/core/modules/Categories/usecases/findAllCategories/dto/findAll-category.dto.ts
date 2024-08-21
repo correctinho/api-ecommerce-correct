@@ -1,8 +1,4 @@
-export type InputFindCategoryDTO = {
-  uuid: string;
-};
-
-export type OutputFindCategoryDTO = {
+export type OutputFindAllCategoryDTO = {
   uuid: string;
   name: string;
   description: string | null;

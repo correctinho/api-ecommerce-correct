@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PrismaService} from 'src/core/infra/databases/prisma.config';
 import { Uuid } from '../../../../../@shared/ValueObjects/uuid.vo';
 import { CategoryEntity } from '../../../entities/categories.entity';
@@ -8,7 +9,7 @@ import { Injectable } from '@nestjs/common';
 export class CategoriesPrismaRepository implements ICategoriesRepository {
 
   constructor(private prisma: PrismaService){}
-  
+
   async findByName(name: string): Promise<CategoryEntity | null> {
     const category = await this.prisma.categories.findFirst({
       where: {
@@ -31,6 +32,7 @@ export class CategoriesPrismaRepository implements ICategoriesRepository {
         uuid: entity.uuid.uuid,
         name: entity.name,
         description: entity.description,
+        is_active: entity.is_active,
         created_at: entity.created_at
       }
     })
@@ -47,10 +49,10 @@ export class CategoriesPrismaRepository implements ICategoriesRepository {
       }
     })
   }
-  async find(id: Uuid): Promise<CategoryEntity | null> {
+  async find(uuid: string): Promise<CategoryEntity | null> {
     const category = await this.prisma.categories.findUnique({
       where: {
-        uuid: id.uuid,
+        uuid,
       },
     });
 
@@ -66,16 +68,15 @@ export class CategoriesPrismaRepository implements ICategoriesRepository {
   }
 
   async findAll(): Promise<CategoryEntity[]> {
-    // const category = await this.prisma.categories.findMany();
-
-    // return {
-    //   uuid: new Uuid(category.uuid),
-    //   name: category.name,
-    //   description: category.description,
-    //   is_active: category.is_active,
-    //   created_at: category.created_at,
-    //   updated_at: category.updated_at,
-    // }[] as CategoryEntity[]
-    throw new Error("Not implemented")
+    const categories = await this.prisma.categories.findMany();
+    console.log({categories})
+    return categories.map(category => ({
+      uuid: new Uuid(category.uuid),
+      name: category.name,
+      description: category.description,
+      is_active: category.is_active,
+      created_at: category.created_at,
+      updated_at: category.updated_at,
+    })) as CategoryEntity[];
   }
 }

@@ -19,7 +19,6 @@ export class CreateCategoryUsecase {
     //aqui deve ser feita uma requisição a api de usuários
     const adminDetails = await this.correctAdminUsecase.getCorrectAdmin(data.correct_admin_uuid)
     if(!adminDetails) throw new UnauthorizedException();
-
     //check if name is already registered
     const categoryByName = await this.categoryRepository.findByName(categoryEntity.name)
     if(categoryByName) throw new CustomError("Category name already registered", 409)

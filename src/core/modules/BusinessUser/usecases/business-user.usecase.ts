@@ -8,19 +8,19 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
-export class CorrectAdminDetailsUsecase implements OnModuleInit {
-  private correctAdminService;
-  constructor(@Inject('CORRECT-ADMIN-DETAILS') private client: ClientGrpc) {}
+export class BusinessUserDetailsUsecase implements OnModuleInit {
+  private businessUserService;
+  constructor(@Inject('BUSINESS-USER-DETAILS') private client: ClientGrpc) {}
   onModuleInit() {
-    this.correctAdminService = this.client.getService('UsersService');
+    this.businessUserService = this.client.getService('UsersService');
   }
 
-  async getCorrectAdmin(uuid: string) {
+  async getBusinessUser(uuid: string) {
     try {
       const result = await firstValueFrom(
-        this.correctAdminService.FindCorrectAdmin({ uuid }),
+        this.businessUserService.FindBusinessUser({ uuid }),
       );
-
+      console.log({ result });
       return result;
     } catch (err: any) {
       console.log('Erro ao buscar usuário', err);

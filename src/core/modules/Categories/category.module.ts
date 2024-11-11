@@ -7,9 +7,10 @@ import { CategoriesPrismaRepository } from './repositories/implementations/prism
 import { ICategoriesRepository } from './repositories/categories.repository';
 import { CorrectAdminDetailsModule } from '../CorrectAdmin/correct-admin-details.module';
 import { FindCategoryUsecase } from './usecases/findCategory/find-category.usecase';
-import { FindAllCategoryUsecase } from './usecases/findAllCategories/find-category.usecase';
+import { FindAllCategoryUsecase } from './usecases/findAllCategories/find-all-categories.usecase';
+import { BusinessUserDetailsModule } from '../BusinessUser/business-user-details.module';
 @Module({
-  imports: [CorrectAdminDetailsModule],
+  imports: [CorrectAdminDetailsModule, BusinessUserDetailsModule],
   controllers: [CategoryController],
   providers: [CreateCategoryUsecase, FindCategoryUsecase, FindAllCategoryUsecase, PrismaService,
     {

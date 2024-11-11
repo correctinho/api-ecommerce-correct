@@ -29,7 +29,6 @@ export class ProductController {
   ) {
     data.business_user_uuid = req.user.data.user_uuid;
     data.file = file;
-    console.log({data})
     const usecase = await this.createProductUsecase.execute(data);
     console.log({ usecase });
     return usecase;

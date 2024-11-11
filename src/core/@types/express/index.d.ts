@@ -1,11 +1,11 @@
-import * as express from 'express'
+import * as express from 'express';
 
 declare global {
-    namespace Express {
-        interface Request {
-            correctAdminId: string,
-            companyUserId: string,
-            appUserId: string
-        }
+  namespace Express {
+    interface Request {
+      correctAdminId: string;
+      companyUserId: string;
+      appUserId: string;
     }
+  }
 }

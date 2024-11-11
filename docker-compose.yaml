@@ -3,7 +3,7 @@ services:
     build: .
     command: ./.docker/start.sh
     ports:
-      - 3335:3335
+      - 3334:3334
     volumes:
       - .:/home/node/app
     networks:

@@ -1,24 +1,24 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { CorrectAdminDetailsUsecase } from './usecases/correct-admin.usecase';
+import { BusinessUserDetailsUsecase } from './usecases/business-user.usecase';
 
 @Module({
   controllers: [],
   imports: [
     ClientsModule.register([
       {
-        name: 'CORRECT-ADMIN-DETAILS',
+        name: 'BUSINESS-USER-DETAILS',
         transport: Transport.GRPC,
         options: {
           package: 'user_management',
           protoPath: join(__dirname, '../../../../protos/users.proto'),
-          url: 'localhost:5000',
+          //url: 'localhost:5000',
         },
       },
     ]),
   ],
-  providers: [CorrectAdminDetailsUsecase],
-  exports: [CorrectAdminDetailsUsecase],
+  providers: [BusinessUserDetailsUsecase],
+  exports: [BusinessUserDetailsUsecase],
 })
-export class CorrectAdminDetailsModule {}
+export class BusinessUserDetailsModule {}

@@ -69,7 +69,6 @@ export class CategoriesPrismaRepository implements ICategoriesRepository {
 
   async findAll(): Promise<CategoryEntity[]> {
     const categories = await this.prisma.categories.findMany();
-    console.log({categories})
     return categories.map(category => ({
       uuid: new Uuid(category.uuid),
       name: category.name,

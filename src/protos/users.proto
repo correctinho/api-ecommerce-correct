@@ -1,9 +1,11 @@
 syntax = "proto3";
 
-package correct_admin;
+package user_management;
 
-service CorrectAdminService {
+service UsersService {
   rpc FindCorrectAdmin (InputFindAdmin) returns (OutputFindAdmin);
+  rpc FindBusinessUser(InputFindAdmin) returns (OutputFindAdmin);
+
 }
 
 message InputFindAdmin {

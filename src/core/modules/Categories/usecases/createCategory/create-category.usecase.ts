@@ -31,7 +31,5 @@ export class CreateCategoryUsecase {
       description: categoryEntity.description,
       created_at: categoryEntity._created_at
     }
-
-
   }
 }

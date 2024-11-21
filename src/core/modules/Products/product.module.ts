@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ProductController } from './usecases/product.controller';
 import { CreateProductUsecase } from './usecases/create-product/create-product.usecase';
-import { PrismaService } from 'src/core/infra/databases/prisma.config';
-import { IStorage } from 'src/core/infra/providers/storage/storage';
-import { SupabaseStorage } from 'src/core/infra/providers/storage/supabase.storage';
+import { PrismaService } from '../../infra/databases/prisma.config';
+import { IStorage } from '../../infra/providers/storage/storage';
+import { SupabaseStorage } from '../../infra/providers/storage/supabase.storage';
+import { BusinessUserDetailsModule } from '../BusinessUser/business-user-details.module';
+import { IProductRepository } from './repositories/product.repository';
+import { ProductPrismaRepository } from './repositories/prisma/product-prisma.repository';
 
 @Module({
-  imports: [],
+  imports: [BusinessUserDetailsModule],
   controllers: [ProductController],
   providers: [
     CreateProductUsecase,
@@ -14,6 +17,10 @@ import { SupabaseStorage } from 'src/core/infra/providers/storage/supabase.stora
     {
       provide: IStorage,
       useClass: SupabaseStorage,
+    },
+    {
+      provide: IProductRepository,
+      useClass: ProductPrismaRepository,
     },
   ],
 })

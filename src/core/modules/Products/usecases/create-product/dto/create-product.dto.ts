@@ -1,13 +1,20 @@
 export type InputCreateProductDTO = {
   category_uuid: string;
   business_user_uuid: string;
+  business_info_uuid: string;
+  ean_code: string | null;
+  brand: string;
   name: string;
   description: string | null;
-  price: number;
+  original_price: number;
+  discount: number;
+  promotional_price: number;
   stock: number;
-  file: FileDTO;
-  imageUrl: string[];
-  create_at: string;
+  api_image: string;
+  is_mega_promotion: string;
+  is_active: boolean;
+  uploaded_images: FileDTO[];
+  created_at: string;
   updated_at: string;
 };
 

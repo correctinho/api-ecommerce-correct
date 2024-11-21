@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { PrismaService} from 'src/core/infra/databases/prisma.config';
+import { PrismaService} from '../../../../../infra/databases/prisma.config';
 import { Uuid } from '../../../../../@shared/ValueObjects/uuid.vo';
 import { CategoryEntity } from '../../../entities/categories.entity';
 import { ICategoriesRepository } from '../../categories.repository';

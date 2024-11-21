@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="15" failures="0" errors="0" time="9.792">
+  <testsuite name="Unit test EcommerceAddress entity" errors="0" failures="0" skipped="0" timestamp="2024-11-15T11:34:21" time="8.889" tests="1">
+    <testcase classname="Unit test EcommerceAddress entity Should create ecommerce address" name="Unit test EcommerceAddress entity Should create ecommerce address" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="Unit test OrderHeader entity" errors="0" failures="0" skipped="0" timestamp="2024-11-15T11:34:21" time="8.953" tests="3">
+    <testcase classname="Unit test OrderHeader entity Should throw an error if total amount is negative" name="Unit test OrderHeader entity Should throw an error if total amount is negative" time="0.024">
+    </testcase>
+    <testcase classname="Unit test OrderHeader entity Should create order header" name="Unit test OrderHeader entity Should create order header" time="0.002">
+    </testcase>
+    <testcase classname="Unit test OrderHeader entity Should update total amount" name="Unit test OrderHeader entity Should update total amount" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Unit test OrderDetails entity" errors="0" failures="0" skipped="0" timestamp="2024-11-15T11:34:21" time="9.014" tests="5">
+    <testcase classname="Unit test OrderDetails entity Should throw an error if quantity is less than or equal to zero" name="Unit test OrderDetails entity Should throw an error if quantity is less than or equal to zero" time="0.017">
+    </testcase>
+    <testcase classname="Unit test OrderDetails entity Should throw an error if subtotal is negative" name="Unit test OrderDetails entity Should throw an error if subtotal is negative" time="0.001">
+    </testcase>
+    <testcase classname="Unit test OrderDetails entity Should create order details" name="Unit test OrderDetails entity Should create order details" time="0.001">
+    </testcase>
+    <testcase classname="Unit test OrderDetails entity Should update order quantity" name="Unit test OrderDetails entity Should update order quantity" time="0.001">
+    </testcase>
+    <testcase classname="Unit test OrderDetails entity Should update order subtotal" name="Unit test OrderDetails entity Should update order subtotal" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Unity test Categories entity" errors="0" failures="0" skipped="0" timestamp="2024-11-15T11:34:21" time="9.109" tests="5">
+    <testcase classname="Unity test Categories entity Should throw an error if name is missing" name="Unity test Categories entity Should throw an error if name is missing" time="0.009">
+    </testcase>
+    <testcase classname="Unity test Categories entity Should create category" name="Unity test Categories entity Should create category" time="0.001">
+    </testcase>
+    <testcase classname="Unity test Categories entity Should update category name" name="Unity test Categories entity Should update category name" time="0">
+    </testcase>
+    <testcase classname="Unity test Categories entity Should update category description" name="Unity test Categories entity Should update category description" time="0.001">
+    </testcase>
+    <testcase classname="Unity test Categories entity Should deactivate category" name="Unity test Categories entity Should deactivate category" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2024-11-15T11:34:21" time="9.361" tests="1">
+    <testcase classname="AppController root should return &quot;Hello World!&quot;" name="AppController root should return &quot;Hello World!&quot;" time="0.015">
+    </testcase>
+  </testsuite>
+</testsuites>

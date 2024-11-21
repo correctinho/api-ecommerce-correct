@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { createHmac } from 'crypto';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuardBusiness implements CanActivate {
   constructor(private jwtService: JwtService) {}
   async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
     // }
 
     //chamar api local
-    const TOKEN_SECRET = process.env.SECRET_KEY_TOKEN_ADMIN as string;
+    const TOKEN_SECRET = process.env.SECRET_KEY_TOKEN_COMPANY_ADMIN as string;
     const TOKEN_SECRET_CRYPTO = createHmac('sha256', TOKEN_SECRET).digest(
       'base64',
     );
@@ -37,7 +37,8 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: TOKEN_SECRET_CRYPTO,
       });
-      request['user'] = payload.admin;
+
+      request['user'] = payload.businessUser;
     } catch (error) {
       throw new UnauthorizedException();
     }

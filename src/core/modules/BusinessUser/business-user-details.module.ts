@@ -12,8 +12,8 @@ import { BusinessUserDetailsUsecase } from './usecases/business-user.usecase';
         transport: Transport.GRPC,
         options: {
           package: 'user_management',
-          protoPath: join(__dirname, '../../../../protos/users.proto'),
-          //url: 'localhost:5000',
+          protoPath: join(process.cwd(), 'src/protos/users.proto'),
+          url: 'localhost:5000',
         },
       },
     ]),

@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateCategoryUsecase } from './createCategory/create-category.usecase';
 import { InputCreateCategoryDTO } from './createCategory/dto/create-category.dto';
-import { AuthGuard } from 'src/core/infra/providers/auth-guard.provider';
+import { AuthGuard } from '../../../infra/providers/auth-guard.provider';
 import { FindCategoryUsecase } from './findCategory/find-category.usecase';
 import { InputFindCategoryDTO } from './findCategory/dto/find-category.dto';
 import { FindAllCategoryUsecase } from './findAllCategories/find-all-categories.usecase';

@@ -12,7 +12,7 @@ import { CorrectAdminDetailsUsecase } from './usecases/correct-admin.usecase';
         transport: Transport.GRPC,
         options: {
           package: 'user_management',
-          protoPath: join(__dirname, '../../../../protos/users.proto'),
+          protoPath: join(process.cwd(), 'src/protos/users.proto'),
           url: 'localhost:5000',
         },
       },

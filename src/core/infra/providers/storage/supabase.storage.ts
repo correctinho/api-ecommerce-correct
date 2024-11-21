@@ -22,4 +22,16 @@ export class SupabaseStorage implements IStorage {
 
     return data;
   }
+
+  // Função para excluir um arquivo do Supabase
+  async delete(filePath: string): Promise<void> {
+    const { error } = await this.client.storage
+      .from(process.env.SUPABASE_BUCKET ?? '')
+      .remove([filePath]);
+
+    if (error) {
+      console.error('Erro ao excluir imagem do Supabase:', error);
+      throw new Error('Falha ao excluir imagem no Supabase');
+    }
+  }
 }

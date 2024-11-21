@@ -2,4 +2,5 @@ import { FileDTO } from 'src/core/modules/Products/usecases/create-product/dto/c
 
 export abstract class IStorage {
   abstract upload(file: FileDTO, folder: string): Promise<any>;
+  abstract delete(filePath: string): Promise<void>;
 }

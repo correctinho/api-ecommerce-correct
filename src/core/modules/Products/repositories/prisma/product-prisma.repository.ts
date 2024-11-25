@@ -8,20 +8,59 @@ import { Uuid } from '../../../../@shared/ValueObjects/uuid.vo';
 export class ProductPrismaRepository implements IProductRepository {
   constructor(private prisma: PrismaService) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   create(entity: ProductEntity): Promise<void> {
     throw new Error('Method not implemented.');
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(entity: ProductEntity): Promise<void> {
     throw new Error('Method not implemented.');
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   find(id: string): Promise<ProductEntity> {
     throw new Error('Method not implemented.');
   }
   findAll(): Promise<ProductEntity[]> {
     throw new Error('Method not implemented.');
   }
+
+  async findBusinessProducts(
+    businessInfoUuid: string,
+  ): Promise<ProductEntity[] | []> {
+    const products = await this.prisma.products.findMany({
+      where: {
+        business_info_uuid: businessInfoUuid,
+        //is_active: true,
+      },
+      orderBy: [
+        {
+          is_mega_promotion: 'desc',
+        },
+        {
+          created_at: 'desc',
+        },
+      ],
+    });
+    return products.map((product) => ({
+      uuid: new Uuid(product.uuid),
+      category_uuid: new Uuid(product.category_uuid),
+      business_info_uuid: new Uuid(product.business_info_uuid),
+      brand: product.brand,
+      name: product.name,
+      description: product.description,
+      original_price: product.original_price,
+      discount: product.discount,
+      promotional_price: product.promotional_price,
+      stock: product.stock,
+      images_url: product.image_urls,
+      is_mega_promotion: product.is_mega_promotion,
+      weight: product.weight,
+      height: product.height,
+      width: product.width,
+      created_at: product.created_at,
+    })) as ProductEntity[];
+  }
   async upsert(entity: ProductEntity): Promise<ProductEntity> {
-    console.log({ entity });
     const product = await this.prisma.products.upsert({
       where: {
         uuid: entity.uuid.uuid,

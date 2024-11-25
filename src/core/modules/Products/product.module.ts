@@ -7,12 +7,15 @@ import { SupabaseStorage } from '../../infra/providers/storage/supabase.storage'
 import { BusinessUserDetailsModule } from '../BusinessUser/business-user-details.module';
 import { IProductRepository } from './repositories/product.repository';
 import { ProductPrismaRepository } from './repositories/prisma/product-prisma.repository';
+import { AppUserDetailsModule } from '../AppUser/app-user-details.module';
+import { FindBusinessProductsUsecaseByAppUser } from './usecases/find-business-products/find-business-product.usecase';
 
 @Module({
-  imports: [BusinessUserDetailsModule],
+  imports: [BusinessUserDetailsModule, AppUserDetailsModule],
   controllers: [ProductController],
   providers: [
     CreateProductUsecase,
+    FindBusinessProductsUsecaseByAppUser,
     PrismaService,
     {
       provide: IStorage,

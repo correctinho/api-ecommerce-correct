@@ -5,6 +5,7 @@ package user_management;
 service UsersService {
   rpc FindCorrectAdmin (InputFindAdmin) returns (OutputFindAdmin);
   rpc FindBusinessUser(InputFindAdmin) returns (OutputFindBusinessUser);
+  rpc FindAppUser(InputFindAdmin) returns (OutputFindAppUser);
 
 }
 
@@ -31,4 +32,8 @@ message OutputFindBusinessUser {
   repeated string permissions = 10;
   string createdAt = 11;
   string updatedAt = 12;
+}
+
+message OutputFindAppUser {
+  string uuid = 1;
 }
